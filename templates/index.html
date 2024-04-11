@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        .chat-window {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+        .chat-item {
+            margin-bottom: 10px;
+        }
+        #chatroom {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chatbot</h1>
+
+    {% if input_output_history %}
+    <div class="chat-window">
+        <h2 id="chatroom">ChatRoom:</h2>
+        {% if img_str %}
+            <img src="data:image/jpeg;base64,{{ img_str }}" alt="Image" style="width: 200px;">
+        {% endif %}
+        <ul>
+            {% for record in input_output_history %}
+            <li class="chat-item">User: {{ record[0] }}</li>
+            <li class="chat-item">Chatbot: {{ record[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <form method="post">
+        {% if not input_output_history %}
+            <label for="a">Image URL:</label>
+            <input type="text" id="a" name="a">
+        {% endif %}
+        <br>
+        <label for="b">User Input:</label>
+        <input type="text" id="b" name="b">
+        <br>
+        <input type="submit" name="calculate" value="Submit">
+    </form>
+
+    <form method="post">
+        <input type="submit" name="start" value="Restart">
+    </form>
+    
+</body>
+</html>
