@@ -189,4 +189,4 @@ def index():
     return render_template('index.html', input_output_history=input_output_history, img_str=img_str)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
